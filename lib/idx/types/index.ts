@@ -32,6 +32,7 @@ export { IdxMessage } from './idx-js';
 export { AuthenticationOptions } from '../authenticate';
 export { RegistrationOptions } from '../register';
 export { PasswordRecoveryOptions } from '../recoverPassword';
+export { AccountUnlockOptions } from '../unlockAccount';
 export { ProceedOptions } from '../proceed';
 export { CancelOptions } from '../cancel';
 export { FlowIdentifier };
@@ -52,7 +53,7 @@ export enum AuthenticatorKey {
   PHONE_NUMBER = 'phone_number',
   GOOGLE_AUTHENTICATOR = 'google_otp',
   SECURITY_QUESTION = 'security_question',
-  OKTA_VERIFY = 'okta_verify'
+  OKTA_VERIFY = 'okta_verify',
 }
 
 export type Input = {
@@ -78,6 +79,7 @@ export enum IdxFeature {
   PASSWORD_RECOVERY = 'recover-password',
   REGISTRATION = 'enroll-profile',
   SOCIAL_IDP = 'redirect-idp',
+  ACCOUNT_UNLOCK = 'unlock-account',
 }
 
 export interface IdxTransaction {

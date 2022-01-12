@@ -19,7 +19,8 @@ import {
   PhoneAuthenticatorFactory,
   GoogleAuthenticatorFactory,
   SecurityQuestionAuthenticatorFactory,
-  OktaVerifyAuthenticatorFactory
+  OktaVerifyAuthenticatorFactory,
+  OktaVerifyPushOnlyAuthenticatorFactory
 } from './authenticators';
 import { 
   EmailAuthenticatorFormFactory, 
@@ -82,6 +83,18 @@ export const VerifyEmailRemediationFactory = ChallengeAuthenticatorRemediationFa
   ],
   relatesTo: {
     value: EmailAuthenticatorFactory.build()
+  }
+});
+
+export const VerifyPhoneRemediationFactory = ChallengeAuthenticatorRemediationFactory.params({
+  name: 'challenge-authenticator',
+  value: [
+    CredentialsValueFactory.build({
+      form: VerifySmsFormFactory.build()
+    })
+  ],
+  relatesTo: {
+    value: PhoneAuthenticatorFactory.build()
   }
 });
 
@@ -389,5 +402,27 @@ export const EnrollmentChannelDataSmsRemediationFactory = IdxRemediationFactory.
   name: 'enrollment-channel-data',
   value: [
     PhoneNumberValueFactory.build()
+  ]
+});
+
+export const OktaVerifyPushChallengePollRemediationFactory = ChallengePollRemediationFactory.params({
+  name: 'challenge-poll',
+  relatesTo: {
+    type: 'object',
+    value: OktaVerifyPushOnlyAuthenticatorFactory.build()
+  },
+  value: [],
+  refresh: 4000
+});
+
+export const UnlockAccountRemediationFactory = IdxRemediationFactory.params({
+  name: 'unlock-account'
+});
+
+export const SelectAuthenticatorUnlockAccountRemediationFactory = IdxRemediationFactory.params({
+  name: 'select-authenticator-unlock-account',
+  value: [
+    UsernameValueFactory.build(),
+    AuthenticatorValueFactory.build()
   ]
 });

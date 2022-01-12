@@ -18,6 +18,7 @@ import {
   IdentifyRemediationFactory,
   IdentifyWithPasswordRemediationFactory,
   VerifyPasswordRemediationFactory,
+  VerifyEmailRemediationFactory
 } from './remediations';
 import { 
   IdxAuthenticatorFactory,
@@ -69,6 +70,12 @@ export const IdentifyWithPasswordResponseFactory = IdentifyResponseFactory.param
 export const VerifyPasswordResponseFactory = IdxResponseFactory.params({
   neededToProceed: [
     VerifyPasswordRemediationFactory.build()
+  ]
+});
+
+export const VerifyEmailResponseFactory = IdxResponseFactory.params({
+  neededToProceed: [
+    VerifyEmailRemediationFactory.build()
   ]
 });
 
